@@ -1,16 +1,30 @@
-import { useState } from 'react'
-import './App.css'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import { FirebaseProvider } from './context/FirebaseContext';
+import MuralAvisos from './components/pages/mural';
+import LoginPage from './components/pages/LoginPage';
+import ProtectedRoute from './components/common/ProtectedRoute';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [muralInfo, setMuralInfo] = useState(null)
-
   return (
-    <>
-    <MuralAvisos/>
-    </>
-  )
+    <AuthProvider>
+      <FirebaseProvider>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <MuralAvisos />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </FirebaseProvider>
+    </AuthProvider>
+  );
 }
-import MuralAvisos from './components/pages/mural';
 
-export default App
+export default App;

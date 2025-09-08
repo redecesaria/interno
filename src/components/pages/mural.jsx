@@ -1,30 +1,34 @@
-"use client";
-
 import { useState } from "react";
-import { useFirebase } from "../context/FirebaseContext";
-import BotaoEstilizado from "./botao-estilizado";
-import CardAviso from "./card-aviso";
-import FormularioAviso from "./formulario-aviso";
+import { useFirebase } from "../../context/FirebaseContext";
+import { useAuth } from "../../context/AuthContext";
+import BotaoEstilizado from "../common/BotaoEstilizado";
+import CardAviso from "../common/CardAviso";
+import FormularioAviso from "../common/FormularioAviso";
 
 const MuralAvisos = () => {
-  const { posts, setPosts, DeletePost, EditPost } = useFirebase();
-
+  const { posts, AddPost, DeletePost, EditPost } = useFirebase();
+  const { currentUser, logout } = useAuth();
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const currentUser = { id: 1, nome: "Usuário Atual" };
+  const [editingPost, setEditingPost] = useState(null);
 
   const handleAddPost = (formData) => {
-    const newPost = {
-      id: Date.now().toString(),
-      titulo: formData.titulo,
-      conteudo: formData.conteudo,
-      prioridade: formData.prioridade,
-      autor: currentUser.nome,
-      data: new Date().toLocaleDateString("pt-BR"),
-    };
-
-    setPosts([...posts, newPost]);
-    console.log("[v0] Novo post criado:", newPost);
+    if (editingPost) {
+      EditPost(editingPost.id, formData);
+    } else {
+      AddPost(formData);
+    }
     setIsFormOpen(false);
+    setEditingPost(null);
+  };
+
+  const handleEdit = (post) => {
+    setEditingPost(post);
+    setIsFormOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsFormOpen(false);
+    setEditingPost(null);
   };
 
   return (
@@ -47,6 +51,11 @@ const MuralAvisos = () => {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
+        <div className="absolute top-4 right-4">
+          <BotaoEstilizado onClick={logout} variant="danger">
+            Logout
+          </BotaoEstilizado>
+        </div>
         {/* Header do mural */}
         <div className="text-center mb-8">
           <div className="bg-white border-4 border-black shadow-[16px_16px_0px_0px_#000000] p-6 mb-6 inline-block transform rotate-1">
@@ -74,7 +83,7 @@ const MuralAvisos = () => {
               key={aviso.id}
               aviso={aviso}
               currentUser={currentUser}
-              onEdit={EditPost}
+              onEdit={() => handleEdit(aviso)}
               onDelete={DeletePost}
             />
           ))}
@@ -99,7 +108,8 @@ const MuralAvisos = () => {
       <FormularioAviso
         isOpen={isFormOpen}
         onSubmit={handleAddPost}
-        onCancel={() => setIsFormOpen(false)}
+        onCancel={handleCancel}
+        initialData={editingPost}
       />
     </div>
   );
