@@ -34,9 +34,9 @@ const FormularioAviso = ({ isOpen, onSubmit, onCancel, initialData }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md border-4 border-black">
-        <h2 className="text-2xl font-black text-black mb-4 uppercase">
+        <h2 className="text-xl sm:text-2xl font-black text-black mb-4 uppercase">
           {initialData ? 'Editar Aviso' : 'Criar Novo Aviso'}
         </h2>
         <form onSubmit={handleSubmit}>

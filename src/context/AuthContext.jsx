@@ -51,8 +51,22 @@ export const AuthProvider = ({ children }) => {
 
   // Ouve mudanças no estado de autenticação (login/logout)
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
-      setCurrentUser(user);
+    const unsubscribe = onAuthStateChanged(getAuth(), async (user) => {
+      if (user) {
+        // Se o usuário estiver logado, busca os dados do Firestore
+        const userRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+          // Combina o usuário do Auth com os dados do Firestore
+          setCurrentUser({ ...user, ...docSnap.data() });
+        } else {
+          // Se não encontrar o documento, usa apenas os dados do Auth
+          setCurrentUser(user);
+        }
+      } else {
+        // Se o usuário não estiver logado
+        setCurrentUser(null);
+      }
       setLoading(false);
     });
     return unsubscribe; // Limpa o listener ao desmontar o componente

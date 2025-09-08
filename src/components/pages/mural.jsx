@@ -32,7 +32,7 @@ const MuralAvisos = () => {
   };
 
   return (
-    <div className="min-h-screen bg-yellow-200 p-6 relative overflow-hidden">
+    <div className="min-h-screen bg-yellow-200 p-4 sm:p-6 relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div
           className="w-full h-full bg-black bg-opacity-20"
@@ -58,22 +58,24 @@ const MuralAvisos = () => {
         </div>
         {/* Header do mural */}
         <div className="text-center mb-8">
-          <div className="bg-white border-4 border-black shadow-[16px_16px_0px_0px_#000000] p-6 mb-6 inline-block transform rotate-1">
-            <h1 className="text-5xl font-black text-black mb-2 uppercase tracking-wider transform -rotate-1">
+          <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_#000000] sm:shadow-[16px_16px_0px_0px_#000000] p-4 sm:p-6 mb-6 inline-block transform rotate-1">
+            <h1 className="text-3xl sm:text-5xl font-black text-black mb-2 uppercase tracking-wider transform -rotate-1">
               MURAL DE AVISOS
             </h1>
-            <p className="text-black font-bold uppercase tracking-wide transform -rotate-1">
+            <p className="text-sm sm:text-base text-black font-bold uppercase tracking-wide transform -rotate-1">
               COMUNICADOS IMPORTANTES
             </p>
           </div>
 
-          <BotaoEstilizado
-            variant="primary"
-            onClick={() => setIsFormOpen(true)}
-            className="text-lg px-8 py-4"
-          >
-            + CRIAR NOVO AVISO
-          </BotaoEstilizado>
+          {currentUser?.admin && (
+            <BotaoEstilizado
+              variant="primary"
+              onClick={() => setIsFormOpen(true)}
+              className="text-lg px-8 py-4"
+            >
+              + CRIAR NOVO AVISO
+            </BotaoEstilizado>
+          )}
         </div>
 
         {/* Grid de avisos */}
@@ -92,12 +94,12 @@ const MuralAvisos = () => {
         {/* Mensagem quando não há avisos */}
         {posts.length === 0 && (
           <div className="text-center py-12">
-            <div className="bg-white border-4 border-black shadow-[12px_12px_0px_0px_#000000] p-8 inline-block">
-              <div className="text-6xl mb-4 font-black">📝</div>
-              <h3 className="text-2xl font-black text-black mb-2 uppercase tracking-wide">
+            <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_#000000] sm:shadow-[12px_12px_0px_0px_#000000] p-6 sm:p-8 inline-block">
+              <div className="text-5xl sm:text-6xl mb-4 font-black">📝</div>
+              <h3 className="text-xl sm:text-2xl font-black text-black mb-2 uppercase tracking-wide">
                 NENHUM AVISO
               </h3>
-              <p className="text-black font-bold uppercase text-sm tracking-wide">
+              <p className="text-xs sm:text-sm text-black font-bold uppercase tracking-wide">
                 CLIQUE PARA ADICIONAR O PRIMEIRO
               </p>
             </div>

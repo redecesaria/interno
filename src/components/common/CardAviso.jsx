@@ -28,7 +28,7 @@ const CardAviso = ({ aviso, currentUser, onEdit, onDelete }) => {
           <strong>Data:</strong> {data}
         </p>
       </div>
-      {isOwner && (
+      {currentUser?.admin && (
         <div className="flex justify-end space-x-2 mt-4">
           <BotaoEstilizado variant="secondary" onClick={onEdit}>
             Editar
