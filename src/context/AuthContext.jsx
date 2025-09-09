@@ -1,8 +1,8 @@
 // src/context/AuthContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../firebase/config';
+import { db, auth } from '../firebase/config';
 
 const AuthContext = createContext();
 
@@ -13,6 +13,34 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Função para criar um usuário com email e senha
+  async function signup(email, password, displayName, store) {
+    try {
+      const { user } = await createUserWithEmailAndPassword(auth, email, password);
+
+      if (!user) {
+        throw new Error("Usuário não encontrado após o cadastro.");
+      }
+
+      await updateProfile(user, { displayName });
+      await saveUserToFirestore(user, displayName, store);
+      return user;
+    } catch (error) {
+      console.error("Erro ao criar o perfil do usuário:", error);
+      return null;
+    }
+  }
+
+  // Função de Login
+  async function login(email, password) {
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  // Função de Logout
+  async function logout() {
+    return signOut(auth);
+  }
 
   // Função para logar com o Google
   const signInWithGoogle = async () => {
@@ -28,7 +56,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Função para salvar o usuário no Firestore
-  const saveUserToFirestore = async (user) => {
+  const saveUserToFirestore = async (user, displayName, store) => {
     const userRef = doc(db, 'users', user.uid);
     const docSnap = await getDoc(userRef);
 
@@ -36,17 +64,12 @@ export const AuthProvider = ({ children }) => {
       // Se o documento não existe, cria um novo
       await setDoc(userRef, {
         uid: user.uid,
-        displayName: user.displayName,
+        displayName: displayName,
         email: user.email,
-        photoURL: user.photoURL,
+        store: store,
         createdAt: new Date(),
       });
     }
-  };
-
-  // Função para fazer logout
-  const logout = () => {
-    return signOut(getAuth());
   };
 
   // Ouve mudanças no estado de autenticação (login/logout)
@@ -76,6 +99,9 @@ export const AuthProvider = ({ children }) => {
     currentUser,
     signInWithGoogle,
     logout,
+    signup, // Adicionado signup ao contexto
+    login, // Adicionado login ao contexto
+    sendPasswordResetEmail, // Adicionado sendPasswordResetEmail ao contexto
   };
 
   return (
