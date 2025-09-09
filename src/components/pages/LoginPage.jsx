@@ -19,7 +19,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+    <div className="h-full bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg text-center border-4 border-black">
         <h1 className="text-3xl font-black text-black mb-4 uppercase">Bem-vindo!</h1>
         <p className="text-gray-600 mb-8">Faça login para continuar</p>

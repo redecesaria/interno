@@ -32,7 +32,7 @@ const MuralAvisos = () => {
   };
 
   return (
-    <div className="min-h-screen bg-yellow-200 p-4 sm:p-6 relative overflow-hidden">
+    <div className="h-full bg-yellow-200 p-4 sm:p-6 relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div
           className="w-full h-full bg-black bg-opacity-20"
