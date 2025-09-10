@@ -6,6 +6,7 @@ const BotaoEstilizado = ({
   onClick,
   children,
   className,
+  type = 'button',
 }) => {
   if (!isVisible) return null;
 
@@ -22,6 +23,7 @@ const BotaoEstilizado = ({
 
   return (
     <button
+      type={type}
       onClick={onClick}
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
     >

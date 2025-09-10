@@ -75,62 +75,55 @@ const Header = () => {
         }
       `}</style>
 
-    <nav className="main-nav top-0 z-50 bg-white p-4 shadow-md">
-      <div className="container mx-auto flex justify-center space-x-6">
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900 active' : 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900')}
-        >
-          Início
-        </NavLink>
+    <nav className="main-nav">
+      <NavLink
+        to="/"
+        className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+      >
+        Início
+      </NavLink>
 
-        <NavLink
-          to="/guia"
-          className={({ isActive }) => (isActive ? 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900 active' : 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900')}
-        >
-          Guia
-        </NavLink>
+      <NavLink
+        to="/guia"
+        className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+      >
+        Guia
+      </NavLink>
 
-        <NavLink
-          to="/apps"
-          className={({ isActive }) => (isActive ? 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900 active' : 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900')}
-        >
-          Apps
-        </NavLink>
+      <NavLink
+        to="/apps"
+        className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+      >
+        Apps
+      </NavLink>
 
-        <NavLink
-          to="/radios"
-          className={({ isActive }) => (isActive ? 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900 active' : 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900')}
-        >
-          Rádios
-        </NavLink>
+      <NavLink
+        to="/radios"
+        className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+      >
+        Rádios
+      </NavLink>
 
-        <NavLink
-          to="/map"
-          className={({ isActive }) => (isActive ? 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900 active' : 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900')}
-        >
-          Mapa
-        </NavLink>
+      <NavLink
+        to="/map"
+        className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+      >
+        Mapa
+      </NavLink>
 
-        <NavLink
-          to="/avisos"
-          className={({ isActive }) => (isActive ? 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900 active' : 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900')}
-        >
-          Avisos
-        </NavLink>
+      <NavLink
+        to="/avisos"
+        className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+      >
+        Avisos
+      </NavLink>
 
-        <NavLink
-          to="/account"
-          className={({ isActive }) => (isActive ? 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900 active' : 'nav-link font-semibold text-gray-700 transition-colors duration-300 hover:text-gray-900')}
-        >
-          Conta
-        </NavLink>
-        {/*<div className="flex align-center justify-center absolute right-0 top-2 pr-5">
-          <BotaoEstilizado onClick={logout} variant="danger">
-            Sair
-          </BotaoEstilizado>
-        </div>*/}
-      </div>
+      <NavLink
+        to="/account"
+        className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+      >
+        Conta
+      </NavLink>
     </nav>
     </>
   );

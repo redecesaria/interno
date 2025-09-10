@@ -38,9 +38,9 @@ const LoginPage = () => {
 
   return (
     <div className="flex h-full items-center justify-center bg-gray-100">
-      <div className="flex flex-col rounded-lg border-4 border-black bg-white p-8 text-center shadow-lg">
+      <div className="flex flex-col rounded-xl bg-white p-8 text-center shadow-lg">
         <h1 className="mb-4 text-3xl font-black text-black uppercase">
-          Bem-vindo!
+          Bem-vindo
         </h1>
         <p className="mb-8 text-gray-600">Faça login para continuar</p>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -115,7 +115,7 @@ const LoginPage = () => {
             </BotaoEstilizado>
 
             <BotaoEstilizado
-            type="google"
+              type="button"
               onClick={signInWithGoogle}
               variant="primary"
               isVisible={true}

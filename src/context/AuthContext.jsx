@@ -117,10 +117,18 @@ export const AuthProvider = ({ children }) => {
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      const result = await signInWithPopup(getAuth(), provider);
+      const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      // Salva as informações do usuário no Firestore
-      await saveUserToFirestore(user);
+
+      const userRef = doc(db, 'users', user.uid);
+      const docSnap = await getDoc(userRef);
+
+      if (!docSnap.exists()) {
+        await signOut(auth);
+        alert('Usuário não cadastrado.');
+        console.log('Usuário não cadastrado tentou login:', user.email);
+        return;
+      }
     } catch (error) {
       console.error('Erro ao fazer login com o Google:', error);
     }

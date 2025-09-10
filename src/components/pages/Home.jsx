@@ -63,24 +63,24 @@ export default function HomePage() {
 
   // A função de renderização que retorna o JSX (HTML do React).
   return (
-    <>
+    <div className="home-page-styles">
       {/* Os estilos que estavam no arquivo shared-styles.css foram recriados aqui 
         para manter a aparência original dentro de um único componente.
       */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap');
         
-        body {
+        .home-page-styles {
           font-family: 'Poppins', sans-serif;
           background-color: #f8fafc;
           color: #334155;
         }
 
-        .title-font {
+        .home-page-styles .title-font {
           font-family: 'Space Mono', monospace;
         }
 
-        .section {
+        .home-page-styles .section {
           min-height: 100vh;
           display: flex;
           align-items: center;
@@ -89,14 +89,14 @@ export default function HomePage() {
           box-sizing: border-box;
         }
 
-        .main-container {
+        .home-page-styles .main-container {
           max-width: 1100px;
           width: 100%;
           margin: 0 auto;
           padding: 0 1rem;
         }
 
-        .btn-primary, .btn-secondary {
+        .home-page-styles .btn-primary, .home-page-styles .btn-secondary {
           display: inline-block;
           padding: 0.8rem 1.75rem;
           border-radius: 8px;
@@ -107,27 +107,27 @@ export default function HomePage() {
           border: none;
         }
 
-        .btn-primary {
+        .home-page-styles .btn-primary {
           background-color: #ef4444;
           color: white;
           box-shadow: 0 4px 14px rgba(239, 68, 68, 0.3);
         }
-        .btn-primary:hover {
+        .home-page-styles .btn-primary:hover {
           background-color: #dc2626;
           transform: translateY(-3px);
           box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
         }
 
-        .btn-secondary {
+        .home-page-styles .btn-secondary {
           background-color: #e5e7eb;
           color: #1f2937;
         }
-        .btn-secondary:hover {
+        .home-page-styles .btn-secondary:hover {
           background-color: #d1d5db;
           transform: translateY(-3px);
         }
 
-        .content-card {
+        .home-page-styles .content-card {
           background: white;
           padding: 2rem;
           border-radius: 16px;
@@ -136,31 +136,31 @@ export default function HomePage() {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .content-card:hover {
+        .home-page-styles .content-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
         }
 
-        .highlight {
+        .home-page-styles .highlight {
           background-color: rgba(251, 191, 36, 0.3);
           padding: 0.1rem 0.3rem;
           border-radius: 4px;
         }
 
-        .grid-responsive {
+        .home-page-styles .grid-responsive {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
           gap: 2rem;
         }
         
         /* Estilos para a animação de rolagem */
-        .animate-on-scroll {
+        .home-page-styles .animate-on-scroll {
           opacity: 0;
           transform: translateY(30px);
           transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
-        .animate-on-scroll.is-visible {
+        .home-page-styles .animate-on-scroll.is-visible {
           opacity: 1;
           transform: translateY(0);
         }
@@ -309,7 +309,7 @@ export default function HomePage() {
       <footer className="text-center p-6 text-gray-500 bg-white/50 backdrop-blur-sm">
         <p>&copy; 2024 Rede Cesária. Todos os direitos reservados.</p>
       </footer>
-    </>
+    </div>
   );
 }
 
