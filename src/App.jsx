@@ -15,6 +15,7 @@ import MapPage from './components/pages/Map';
 import CesariaManual from './components/pages/Manual';
 import './App.css';
 
+
 function App() {
   return (
     <AuthProvider>
