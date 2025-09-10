@@ -22,31 +22,26 @@ export const useFirebase = () => {
 export const FirebaseProvider = ({ children }) => {
   const firestore = db;
   const [posts, setPosts] = useState([]);
-  const [newPost, setNewPost] = useState("");
-  const [editingPost, setEditingPost] = useState(null);
-  const { currentUser } = useAuth()
+  const { currentUser } = useAuth();
 
-  const AddPost = async () => {
-    if (!newPost) return;
+  const AddPost = async (formData) => {
+    if (!formData.titulo || !formData.conteudo) return;
     try {
       await addDoc(collection(firestore, "posts"), {
-        content: newPost,
+        ...formData,
+        autor: currentUser.uid,
+        autorNome: currentUser.displayName,
         createdAt: new Date(),
       });
-      setNewPost(null);
     } catch (e) {
       console.error("Erro ao adicionar documento: ", e);
     }
   };
 
-  const EditPost = async (id) => {
+  const EditPost = async (id, formData) => {
     try {
       const postRef = doc(firestore, "posts", id);
-      await updateDoc(postRef, {
-        content: editingPost,
-      });
-      setEditingPost(null); // Sai do modo de edição
-      setEditingPost("");
+      await updateDoc(postRef, formData);
     } catch (e) {
       console.error("Erro ao editar documento: ", e);
     }
@@ -83,12 +78,8 @@ export const FirebaseProvider = ({ children }) => {
     AddPost,
     posts,
     setPosts,
-    newPost,
-    setNewPost,
     DeletePost,
     EditPost,
-    editingPost,
-    setEditingPost,
   };
 
   return (
