@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { useFirebase } from "../../context/FirebaseContext";
-import { useAuth } from "../../context/AuthContext";
-import BotaoEstilizado from "../common/BotaoEstilizado";
-import CardAviso from "../common/CardAviso";
-import FormularioAviso from "../common/FormularioAviso";
+import React, { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
+import { useFirebase } from '../../context/FirebaseContext';
+import FormularioAviso from '../common/FormularioAviso';
+import BotaoEstilizado from '../common/BotaoEstilizado';
+import CardAviso from '../common/CardAviso';
 
-const MuralAvisos = () => {
+export default function MuralAvisos() {
   const { posts, AddPost, DeletePost, EditPost } = useFirebase();
-  const { currentUser, logout } = useAuth();
+  const { currentUser } = useAuth();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [editingPost, setEditingPost] = useState(null);
 
@@ -32,80 +32,61 @@ const MuralAvisos = () => {
   };
 
   return (
-    <div className="h-full bg-yellow-200 p-4 sm:p-6 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="w-full h-full bg-black bg-opacity-20"
-          style={{
-            backgroundImage: `
-                 repeating-linear-gradient(
-                   45deg,
-                   transparent,
-                   transparent 10px,
-                   rgba(0,0,0,0.1) 10px,
-                   rgba(0,0,0,0.1) 20px
-                 )
-               `,
-          }}
-        ></div>
-      </div>
+     <div className="bg-slate-50 min-h-screen font-['Poppins',_sans-serif] text-slate-700">
+        <style>{`
+            .title-font { font-family: 'Space Mono', monospace; }
+        `}</style>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        <div className="absolute top-4 right-4">
-          <BotaoEstilizado onClick={logout} variant="danger">
-            Logout
-          </BotaoEstilizado>
-        </div>
-        {/* Header do mural */}
-        <div className="text-center mb-8">
-          <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_#000000] sm:shadow-[16px_16px_0px_0px_#000000] p-4 sm:p-6 mb-6 inline-block transform rotate-1">
-            <h1 className="text-3xl sm:text-5xl font-black text-black mb-2 uppercase tracking-wider transform -rotate-1">
-              MURAL DE AVISOS
-            </h1>
-            <p className="text-sm sm:text-base text-black font-bold uppercase tracking-wide transform -rotate-1">
-              COMUNICADOS IMPORTANTES
-            </p>
-          </div>
-
-          {currentUser?.admin && (
-            <BotaoEstilizado
-              variant="primary"
-              onClick={() => setIsFormOpen(true)}
-              className="text-lg px-8 py-4"
-            >
-              + CRIAR NOVO AVISO
-            </BotaoEstilizado>
-          )}
-        </div>
-
-        {/* Grid de avisos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((aviso) => (
-            <CardAviso
-              key={aviso.id}
-              aviso={aviso}
-              currentUser={currentUser}
-              onEdit={() => handleEdit(aviso)}
-              onDelete={DeletePost}
-            />
-          ))}
-        </div>
-
-        {/* Mensagem quando não há avisos */}
-        {posts.length === 0 && (
-          <div className="text-center py-12">
-            <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_#000000] sm:shadow-[12px_12px_0px_0px_#000000] p-6 sm:p-8 inline-block">
-              <div className="text-5xl sm:text-6xl mb-4 font-black">📝</div>
-              <h3 className="text-xl sm:text-2xl font-black text-black mb-2 uppercase tracking-wide">
-                NENHUM AVISO
-              </h3>
-              <p className="text-xs sm:text-sm text-black font-bold uppercase tracking-wide">
-                CLIQUE PARA ADICIONAR O PRIMEIRO
-              </p>
+      <main className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+            {/* Header do mural */}
+            <div className="mb-12 text-center">
+                <h1 className="text-5xl md:text-7xl font-bold title-font text-slate-800">
+                    Mural de Avisos<span className="text-red-500">.</span>
+                </h1>
+                <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                    Fique por dentro dos comunicados importantes da Rede Cesária.
+                </p>
+                <div className="mt-8">
+                    <BotaoEstilizado
+                        isVisible={currentUser.admin}
+                        variant="primary"
+                        onClick={() => setIsFormOpen(true)}
+                        className="px-8 py-3 text-base"
+                    >
+                        + Criar Novo Aviso
+                    </BotaoEstilizado>
+                </div>
             </div>
-          </div>
-        )}
-      </div>
+
+            {/* Grid de avisos */}
+            {posts.length > 0 ? (
+                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {posts.map((aviso) => (
+                        <CardAviso
+                        key={aviso.id}
+                        aviso={aviso}
+                        currentUser={currentUser}
+                        onEdit={() => handleEdit(aviso)}
+                        onDelete={DeletePost}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <div className="py-12 text-center">
+                    <div className="inline-block bg-white p-8 rounded-2xl shadow-lg">
+                        <div className="mb-4 text-6xl">📝</div>
+                        <h3 className="mb-2 text-2xl font-bold title-font text-slate-800">
+                            Nenhum Aviso no Mural
+                        </h3>
+                        <p className="text-gray-500">
+                           Clique em "Criar Novo Aviso" para adicionar o primeiro.
+                        </p>
+                    </div>
+                </div>
+            )}
+        </div>
+      </main>
 
       <FormularioAviso
         isOpen={isFormOpen}
@@ -113,8 +94,11 @@ const MuralAvisos = () => {
         onCancel={handleCancel}
         initialData={editingPost}
       />
+      
+      <footer className="text-center p-6 text-gray-500 bg-white/50 backdrop-blur-sm mt-12">
+        <p>&copy; 2024 Rede Cesária. Todos os direitos reservados.</p>
+      </footer>
     </div>
   );
 };
 
-export default MuralAvisos;

@@ -1,45 +1,33 @@
 import React from 'react';
 import BotaoEstilizado from './BotaoEstilizado';
 
-const CardAviso = ({ aviso, currentUser, onEdit, onDelete }) => {
-  const { id, titulo, conteudo, prioridade, autor, autorNome, data } = aviso;
-  const isOwner = currentUser && currentUser.uid === autor;
-
   const prioridadeColors = {
-    baixa: 'bg-green-200 border-green-500',
-    media: 'bg-yellow-200 border-yellow-500',
-    alta: 'bg-red-200 border-red-500',
+    baixa: 'bg-green-500 h-3 w-3 rounded-full',
+    media: 'bg-yellow-500 h-3 w-3 rounded-full',
+    alta: 'bg-red-500 h-3 w-3 rounded-full',
   };
-
-  return (
-    <div className={`border-4 border-black shadow-[8px_8px_0px_0px_#000000] p-4 bg-white transform rotate-[-1deg] hover:rotate-0 transition-transform duration-150 ease-in-out`}>
-      <div className={`border-2 ${prioridadeColors[prioridade]} p-2 mb-4`}>
-        <h3 className="text-xl font-black text-black uppercase tracking-wide">{titulo}</h3>
-        <span className={`font-bold uppercase text-xs ${prioridadeColors[prioridade]}`}>
-          Prioridade: {prioridade}
-        </span>
+// Componente CardAviso com o novo estilo
+const CardAviso = ({ aviso, currentUser, onEdit, onDelete }) => (
+  <div className="flex flex-col justify-between rounded-2xl bg-white p-8 shadow-lg transition-transform duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
+    <div>
+      <div className="mb-4 flex items-center gap-4">
+        <div className={prioridadeColors[aviso.prioridade]}></div>
+        <h2 className="text-2xl font-bold title-font font-['Space_Mono',_monospace] text-gray-800">{aviso.titulo}</h2>
       </div>
-      <p className="text-gray-800 mb-4">{conteudo}</p>
-      <div className="text-sm text-gray-600">
-        <p>
-          <strong>Autor:</strong> {autorNome}
-        </p>
-        <p>
-          <strong>Data:</strong> {data}
-        </p>
-      </div>
-      {currentUser?.admin && (
-        <div className="flex justify-end space-x-2 mt-4">
-          <BotaoEstilizado variant="secondary" onClick={onEdit}>
-            Editar
-          </BotaoEstilizado>
-          <BotaoEstilizado variant="danger" onClick={() => onDelete(id)}>
-            Excluir
-          </BotaoEstilizado>
+      <p className="whitespace-pre-wrap mb-6 text-base leading-relaxed text-gray-600">{aviso.conteudo}</p>
+    </div>
+    <div>
+      <p className="mb-5 text-sm font-semibold uppercase tracking-wider text-gray-400">
+        Postado por: {aviso.autorNome}
+      </p>
+      {currentUser.admin && (
+        <div className="flex gap-3">
+          <BotaoEstilizado variant="edit" onClick={onEdit} className="w-full py-2 text-sm">Editar</BotaoEstilizado>
+          <BotaoEstilizado variant="delete" onClick={() => onDelete(aviso.id)} className="w-full py-2 text-sm">Excluir</BotaoEstilizado>
         </div>
       )}
     </div>
-  );
-};
+  </div>
+);
 
 export default CardAviso;

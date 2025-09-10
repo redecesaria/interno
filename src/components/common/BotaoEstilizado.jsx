@@ -1,23 +1,20 @@
-import React from 'react';
+// Componente BotaoEstilizado com o novo estilo
+const BotaoEstilizado = ({ isVisible = true, variant = 'primary', onClick, children, className }) => {
+    if (!isVisible) return null;
 
-const BotaoEstilizado = ({ children, onClick, variant = 'primary', className = '', ...props }) => {
-  const baseClasses = 'font-bold py-2 px-4 rounded transform transition-transform duration-150 ease-in-out';
+    const baseClasses = "inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none";
+    const variantClasses = {
+        primary: "bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40",
+        secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300 hover:-translate-y-1",
+        delete: "bg-gray-800 text-white hover:bg-black hover:-translate-y-1",
+        edit: "bg-blue-500 text-white hover:bg-blue-600 hover:-translate-y-1",
+    };
 
-  const variants = {
-    primary: 'bg-blue-500 hover:bg-blue-700 text-white shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000]',
-    secondary: 'bg-gray-500 hover:bg-gray-700 text-white shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000]',
-    danger: 'bg-red-500 hover:bg-red-700 text-white shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000]',
-  };
-
-  return (
-    <button
-      onClick={onClick}
-      className={`${baseClasses} ${variants[variant]} ${className}`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
+    return (
+        <button onClick={onClick} className={`${baseClasses} ${variantClasses[variant]} ${className}`}>
+            {children}
+        </button>
+    );
 };
 
 export default BotaoEstilizado;

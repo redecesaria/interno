@@ -34,14 +34,17 @@ const FormularioAviso = ({ isOpen, onSubmit, onCancel, initialData }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md border-4 border-black">
-        <h2 className="text-xl sm:text-2xl font-black text-black mb-4 uppercase">
+    <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black p-4 backdrop-blur-sm">
+      <div className="w-full max-w-lg rounded-2xl bg-white p-8 shadow-2xl">
+        <h2 className="mb-4 text-xl font-black text-black uppercase sm:text-2xl">
           {initialData ? 'Editar Aviso' : 'Criar Novo Aviso'}
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="titulo" className="block text-black font-bold mb-2 uppercase">
+            <label
+              htmlFor="titulo"
+              className="mb-2 block font-bold text-black uppercase"
+            >
               Título
             </label>
             <input
@@ -50,12 +53,15 @@ const FormularioAviso = ({ isOpen, onSubmit, onCancel, initialData }) => {
               name="titulo"
               value={formData.titulo}
               onChange={handleChange}
-              className="w-full p-2 border-2 border-black rounded"
+              className="w-full rounded border-2 border-black p-2"
               required
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="conteudo" className="block text-black font-bold mb-2 uppercase">
+            <label
+              htmlFor="conteudo"
+              className="mb-2 block font-bold text-black uppercase"
+            >
               Conteúdo
             </label>
             <textarea
@@ -63,13 +69,16 @@ const FormularioAviso = ({ isOpen, onSubmit, onCancel, initialData }) => {
               name="conteudo"
               value={formData.conteudo}
               onChange={handleChange}
-              className="w-full p-2 border-2 border-black rounded"
+              className="w-full rounded border-2 border-black p-2 whitespace-pre-wrap"
               rows="4"
               required
             ></textarea>
           </div>
           <div className="mb-4">
-            <label htmlFor="prioridade" className="block text-black font-bold mb-2 uppercase">
+            <label
+              htmlFor="prioridade"
+              className="mb-2 block font-bold text-black uppercase"
+            >
               Prioridade
             </label>
             <select
@@ -77,7 +86,7 @@ const FormularioAviso = ({ isOpen, onSubmit, onCancel, initialData }) => {
               name="prioridade"
               value={formData.prioridade}
               onChange={handleChange}
-              className="w-full p-2 border-2 border-black rounded"
+              className="w-full rounded border-2 border-black p-2"
             >
               <option value="baixa">Baixa</option>
               <option value="media">Média</option>
@@ -85,7 +94,11 @@ const FormularioAviso = ({ isOpen, onSubmit, onCancel, initialData }) => {
             </select>
           </div>
           <div className="flex justify-end space-x-4">
-            <BotaoEstilizado type="button" variant="secondary" onClick={onCancel}>
+            <BotaoEstilizado
+              type="button"
+              variant="secondary"
+              onClick={onCancel}
+            >
               Cancelar
             </BotaoEstilizado>
             <BotaoEstilizado type="submit" variant="primary">
