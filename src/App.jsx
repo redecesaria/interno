@@ -30,6 +30,11 @@ function App() {
             <Route path="/radios" element={<RadioPage />} />
             <Route path="/map" element={<MapPage />} />
             <Route path="/apps/cesariaapp/manual" element={<CesariaManual />} />
+            <Route path='*' element={
+              <main className="min-h-screen bg-slate-50 font-['Poppins',_sans_serif] text-slate-700 flex items-center justify-center">
+                <p>Página em construção...</p>
+              </main>
+            }/>
           </Route>
           <Route path="/login" element={<LoginPage />} />
         </Routes>

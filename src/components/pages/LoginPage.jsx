@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 
 const LoginPage = () => {
   const [haveAnAccount, setHaveAnAccount] = useState(true);
-  const { currentUser, signInWithGoogle, logout, signup, login } = useAuth();
+  const { currentUser, signInWithGoogle, signup, login } = useAuth();
   const { register, handleSubmit } = useForm();
 
   if (currentUser) {
@@ -14,6 +14,10 @@ const LoginPage = () => {
   }
 
   const onSubmit = (data) => {
+    if (!haveAnAccount && (!data.appkey || data.appkey !== '238702')) {
+      alert('O campo AppKey é obrigatório!')
+      return;
+    }
     if (haveAnAccount) {
     try {
       console.log(data); // Ex: { email: "", senha: "" }
@@ -92,6 +96,18 @@ const LoginPage = () => {
               {...register('senha')}
             />
           </div>
+
+          {!haveAnAccount && (<div className="mb-4 flex flex-col items-center justify-center">
+            <label className="text-black" htmlFor="appkey">
+              AppKey
+            </label>
+            <input
+              className="flex items-center justify-center rounded-lg border-2 border-gray-600 bg-gray-400 text-center text-black"
+              id="appkey"
+              type="password"
+              {...register('appkey')}
+            />
+          </div>)}
 
           <div className="mb-4 flex flex-col items-center justify-center gap-3">
             <BotaoEstilizado isVisible={true} variant="primary" type="submit">

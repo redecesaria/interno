@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function HomePage() {
+  const navigate = useNavigate();
+
   // Estado para controlar qual seção está ativa e destacar o link no menu.
   const [activeSection, setActiveSection] = useState('inicio');
 
@@ -230,7 +233,7 @@ export default function HomePage() {
                   <h3 className="text-2xl font-bold title-font" style={{ color: '#fbbf24' }}>Guia do Colaborador</h3>
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed">Tudo o que você precisa saber para começar com o pé direito na nossa equipe. Processos, sistemas, regras e procedimentos detalhados.</p>
-                <a href="guia/" className="btn-primary">Acessar Guia</a>
+                <button onClick={() => navigate('/guia')} className="btn-primary">Acessar Guia</button>
               </div>
               <div className="content-card animate-on-scroll" style={{ transitionDelay: '0.2s' }}>
                 <div className="flex items-center mb-4">
@@ -238,7 +241,7 @@ export default function HomePage() {
                   <h3 className="text-2xl font-bold title-font" style={{ color: '#38bdf8' }}>Aplicações Internas</h3>
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed">Acesse os manuais e informações sobre nossos sistemas principais: Cesária App, Pharmagno ERP e MagnoPDV.</p>
-                <a href="apps/" className="btn-primary">Ver Aplicações</a>
+                <button onClick={() => navigate('/apps')} className="btn-primary">Ver Aplicações</button>
               </div>
               <div className="content-card animate-on-scroll" style={{ transitionDelay: '0.3s' }}>
                 <div className="flex items-center mb-4">
@@ -246,7 +249,7 @@ export default function HomePage() {
                   <h3 className="text-2xl font-bold title-font" style={{ color: '#ec4899' }}>Rádios da Rede</h3>
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed">Links diretos para as rádios exclusivas de cada uma de nossas lojas. Crie o ambiente perfeito para os clientes.</p>
-                <a href="radios/" className="btn-primary">Ouvir Rádios</a>
+                <button onClick={() => navigate('/radios')} className="btn-primary">Ouvir Rádios</button>
               </div>
               <div className="content-card animate-on-scroll" style={{ transitionDelay: '0.4s' }}>
                 <div className="flex items-center mb-4">
@@ -254,7 +257,7 @@ export default function HomePage() {
                   <h3 className="text-2xl font-bold title-font" style={{ color: '#10b981' }}>Localização das Lojas</h3>
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed">Encontre todas as nossas unidades com endereços completos, horários de funcionamento e informações de contato.</p>
-                <a href="map/" className="btn-primary">Ver Mapa</a>
+                <button onClick={() => navigate('/map')} className="btn-primary">Ver Mapa</button>
               </div>
             </div>
           </div>

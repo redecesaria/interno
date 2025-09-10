@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Componente para a seção de conteúdo da página de Apps.
 const AppsPage = () => {
+  const navigate = useNavigate();
+
   return (
     <main>
       <section id="apps" className="section py-16 md:py-24 text-center animate-on-scroll">
@@ -78,7 +81,7 @@ const AppsPage = () => {
                   O manual do Cesária App também está disponível em versão PDF em todos os computadores onde ele está instalado. Basta clicar com o botão direito no ícone dele na bandeja de Apps do Windows e selecionar a opção 'Manual de Uso'
                 </p>
               </div>
-              <a href="cesariaapp/" className="btn-primary block text-center py-3 px-6 rounded-lg font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors duration-300">Acessar Manual do Cesária App</a>
+              <button onClick={() => navigate('/apps/cesariaapp/manual')} className="btn-primary block text-center py-3 px-6 rounded-lg font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors duration-300">Acessar Manual do Cesária App</button>
             </div>
           </div>
         </div>
@@ -108,7 +111,7 @@ const AppsPage = () => {
                   <p className="text-blue-700 text-sm">Sincronização com todos os outros sistemas</p>
                 </div>
               </div>
-              <a href="pharmagno/" className="btn-primary block text-center py-3 px-6 rounded-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300">Manual do Pharmagno ERP</a>
+              <button onClick={() => navigate('/apps/pharmagno/manual')} className="btn-primary block text-center py-3 px-6 rounded-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300">Manual do Pharmagno ERP</button>
             </div>
             <div>
               <div className="flex items-center mb-6">
@@ -221,8 +224,8 @@ const AppsPage = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-3">
-                <a href="magnopdv/" className="btn-primary py-3 px-6 rounded-lg font-semibold text-center bg-green-600 text-white hover:bg-green-700 transition-colors duration-300">Manual Completo do MagnoPDV</a>
-                <a href="../procedimentos/vendas" className="btn-secondary py-3 px-6 rounded-lg font-semibold text-center bg-gray-200 text-gray-800 hover:bg-gray-300 transition-colors duration-300">Procedimentos de Vendas</a>
+                <button onClick={() => navigate('/apps/magnopdv/manual')} className="btn-primary py-3 px-6 rounded-lg font-semibold text-center bg-green-600 text-white hover:bg-green-700 transition-colors duration-300">Manual Completo do MagnoPDV</button>
+                <button onClick={() => navigate('/procedimentos/vendas')} className="btn-secondary py-3 px-6 rounded-lg font-semibold text-center bg-gray-200 text-gray-800 hover:bg-gray-300 transition-colors duration-300">Procedimentos de Vendas</button>
               </div>
             </div>
           </div>
@@ -279,7 +282,7 @@ const AppsPage = () => {
               </div>
             </div>
             <div className="mt-8 text-center">
-              <a href="../guia/" className="btn-primary py-3 px-6 rounded-lg font-semibold text-center bg-purple-600 text-white hover:bg-purple-700 transition-colors duration-300">Voltar ao Guia Completo</a>
+              <button onClick={() => navigate('/guia')} className="btn-primary py-3 px-6 rounded-lg font-semibold text-center bg-purple-600 text-white hover:bg-purple-700 transition-colors duration-300">Voltar ao Guia Completo</button>
             </div>
           </div>
         </div>

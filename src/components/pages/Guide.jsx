@@ -1,8 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 // Este componente representa a página "Guia do Colaborador".
 // Ele contém a estrutura da página estilizada com Tailwind CSS.
 export default function GuidePage() {
+  const navigate = useNavigate();
+
 
   // A função de renderização que retorna o JSX (HTML do React).
   return (
@@ -92,7 +96,7 @@ export default function GuidePage() {
                             <div className="flex items-center"><span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span><span className="text-gray-700">Gestão de vendas e promoções</span></div>
                             <div className="flex items-center"><span className="w-2 h-2 bg-blue-400 rounded-full mr-3"></span><span className="text-gray-700">Relatórios financeiros detalhados</span></div>
                         </div>
-                        <a href="../apps/pharmagno/" className="btn-primary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40">Manual Completo do Pharmagno</a>
+                        <button onClick={() => navigate('/apps/pharmagno/manual')} className="btn-primary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40">Manual Completo do Pharmagno</button>
                     </div>
                     <div className="content-card bg-white p-8 rounded-2xl shadow-lg h-full transition-transform duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
                         <div className="flex items-center mb-4">
@@ -108,7 +112,7 @@ export default function GuidePage() {
                             <div className="flex items-center"><span className="w-2 h-2 bg-red-400 rounded-full mr-3"></span><span className="text-gray-700">Realizar transferências automáticas de produtos</span></div>
                             <div className="flex items-center"><span className="w-2 h-2 bg-red-400 rounded-full mr-3"></span><span className="text-gray-700">Consultar estoque e dados de clientes</span></div>
                         </div>
-                        <a href="../apps/cesariaapp/" className="btn-primary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40">Manual Completo do Cesária App</a>
+                        <button onClick={() => navigate('/apps/cesariaapp/manual')} className="btn-primary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40">Manual Completo do Cesária App</button>
                     </div>
                 </div>
             </div>
@@ -144,8 +148,8 @@ export default function GuidePage() {
                 <p className="text-yellow-700">Lembre-se de que o ambiente deve ser acolhedor para todos. Escolha músicas com conteúdo apropriado para adultos, crianças e idosos. Evite músicas com linguagem inadequada ou temas controversos.</p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="../radios/" className="btn-primary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40">Acessar Rádios das Lojas</a>
-                <a href="#" className="btn-secondary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-gray-200 text-gray-800 hover:bg-gray-300 hover:-translate-y-1">Guia de Configuração de Playlists</a>
+                <button onClick={() => navigate('/radios')} className="btn-primary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40">Acessar Rádios das Lojas</button>
+                <button onClick={() => navigate('/radios/guia')} className="btn-secondary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-gray-200 text-gray-800 hover:bg-gray-300 hover:-translate-y-1">Guia de Configuração de Playlists</button>
               </div>
             </div>
           </div>
@@ -184,8 +188,8 @@ export default function GuidePage() {
                         </div>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <a href="../apps/magnopdv/" className="btn-primary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40">Manual Completo do MagnoPDV</a>
-                        <a href="#" className="btn-secondary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-gray-200 text-gray-800 hover:bg-gray-300 hover:-translate-y-1">Procedimentos Detalhados de Vendas</a>
+                        <button onClick={() => navigate('/apps/pharmagno/manual')} className="btn-primary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40">Manual Completo do MagnoPDV</button>
+                        <button onClick={() => navigate('/procedimentos/vendas')} className="btn-secondary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-gray-200 text-gray-800 hover:bg-gray-300 hover:-translate-y-1">Procedimentos Detalhados de Vendas</button>
                     </div>
                 </div>
             </div>
@@ -203,8 +207,8 @@ export default function GuidePage() {
                 Lembre-se: estamos aqui para apoiá-lo em sua jornada conosco. Não hesite em buscar ajuda sempre que necessário. Juntos, continuaremos construindo uma rede de drogarias de excelência, focada no atendimento de qualidade e no bem-estar de nossos clientes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="../apps/" className="btn-primary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40">Explorar Sistemas</a>
-                <a href=".." className="btn-secondary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-gray-200 text-gray-800 hover:bg-gray-300 hover:-translate-y-1">Voltar ao Início</a>
+                <button onClick={() => navigate('/apps')} className="btn-primary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-red-500 text-white shadow-lg shadow-red-500/30 hover:bg-red-600 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/40">Explorar Sistemas</button>
+                <button onClick={() => navigate('/')} className="btn-secondary inline-block py-3 px-7 rounded-lg font-semibold transition-all duration-300 text-center no-underline border-none bg-gray-200 text-gray-800 hover:bg-gray-300 hover:-translate-y-1">Voltar ao Início</button>
               </div>
             </div>
           </div>
