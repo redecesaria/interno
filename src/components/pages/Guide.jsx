@@ -216,7 +216,7 @@ export default function GuidePage() {
       </main>
 
       <footer className="text-center p-6 text-gray-500 bg-white/50 backdrop-blur-sm">
-        <p>&copy; 2024 Rede Cesária. Todos os direitos reservados.</p>
+        <p>&copy; 2023 Rede Cesária. Todos os direitos reservados.</p>
       </footer>
     </>
   );

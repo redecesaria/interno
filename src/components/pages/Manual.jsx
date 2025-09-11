@@ -227,7 +227,7 @@ export default function App() {
 
         <footer className="bg-gray-900 text-white mt-16">
             <div className="container mx-auto px-6 py-8 text-center">
-                <p>&copy; 2024 Cesária App. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Cesária App. Todos os direitos reservados.</p>
                 <p className="text-sm text-gray-400 mt-2">Cuidar é o nosso remédio.</p>
             </div>
         </footer>

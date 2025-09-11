@@ -266,7 +266,7 @@ export default function App() {
       </main>
 
       <footer className="mt-12 bg-white/50 p-6 text-center text-gray-500 backdrop-blur-sm">
-        <p>&copy; 2024 Rede Cesária. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Rede Cesária. Todos os direitos reservados.</p>
       </footer>
     </div>
   );
