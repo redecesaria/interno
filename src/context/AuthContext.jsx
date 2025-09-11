@@ -40,8 +40,13 @@ export const AuthProvider = ({ children }) => {
         throw new Error('Usuário não encontrado após o cadastro.');
       }
 
+      
       await updateProfile(user, { displayName });
-      await saveUserToFirestore(user, displayName, store);
+      const userRef = doc(db, 'users', user.uid);
+      const docSnap = await getDoc(userRef);
+      if (!docSnap.exists()) {
+        await saveUserToFirestore(user, displayName, store);
+      }
       return user;
     } catch (error) {
       console.error('Erro ao criar o perfil do usuário:', error);
@@ -122,11 +127,12 @@ export const AuthProvider = ({ children }) => {
 
       const userRef = doc(db, 'users', user.uid);
       const docSnap = await getDoc(userRef);
+      console.log(docSnap);
+      console.log(user.displayName);
 
       if (!docSnap.exists()) {
-        await signOut(auth);
-        alert('Usuário não cadastrado.');
-        console.log('Usuário não cadastrado tentou login:', user.email);
+        await saveUserToFirestore(user, user.displayName, '');
+        alert('Usuário criado com sucesso!');
         return;
       }
     } catch (error) {
@@ -139,6 +145,7 @@ export const AuthProvider = ({ children }) => {
     const userRef = doc(db, 'users', user.uid);
     // const docSnap = await getDoc(userRef);
     const sim = true;
+    const isAdmin = currentUser?.admin ? true : false;
 
     if (sim) {
       // Se o documento não existe, cria um novo
@@ -148,7 +155,7 @@ export const AuthProvider = ({ children }) => {
         email: user.email,
         store: store,
         createdAt: new Date(),
-        admin: currentUser.admin? currentUser.admin : false,
+        admin: isAdmin,
       });
     }
   };
